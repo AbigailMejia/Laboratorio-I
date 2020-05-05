@@ -44,6 +44,25 @@ namespace LaboratorioSistema
                     }
                 }
             }
+            else if(user=='t')
+            {
+                Console.WriteLine("Ingrese la contrasena");
+                int contra = int.Parse(Console.ReadLine());
+                if (contra == 456)
+                {
+                    Console.WriteLine("Que desea hacer?\n1.cargar inventario\n2.Facturar producto");
+                    int admin = int.Parse(Console.ReadLine());
+                    if (admin == 1)
+                    {
+
+                    }
+                    else if (admin == 2)
+                    {
+
+                    }
+
+                }
+            }
             
         }
         static void guardar(string nombre, string contrasena)
