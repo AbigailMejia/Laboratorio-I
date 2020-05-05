@@ -8,8 +8,10 @@ namespace LaboratorioSistema
 {
     class Usuarios
     {
+        Usuarios us = new Usuarios();
+        Inventarios inv = new Inventarios();
+        Factura fac = new Factura();
         static string ruta = "Usuarios.txt";
-        static FileStream archivo;
         static StreamReader leer;
         static StreamWriter escribir;
         public void Principal()
@@ -27,7 +29,7 @@ namespace LaboratorioSistema
                     int admin = int.Parse(Console.ReadLine());
                     if(admin==1)
                     {
-                            guardar(llenar("nombre"), llenar("contrasena"));
+                            guardar(llenar("nombre"), llenar("contrasena"),llenar("cargo"));
                        
                     }
                     if(admin==2)
@@ -43,6 +45,10 @@ namespace LaboratorioSistema
 
                     }
                 }
+                else 
+                {
+                    Console.WriteLine("Usted no esta autorizado para ingresar a esta area");
+                }
             }
             else if(user=='t')
             {
@@ -54,7 +60,7 @@ namespace LaboratorioSistema
                     int admin = int.Parse(Console.ReadLine());
                     if (admin == 1)
                     {
-
+                        inv.ingreso();
                     }
                     else if (admin == 2)
                     {
@@ -62,13 +68,17 @@ namespace LaboratorioSistema
                     }
 
                 }
+                else
+                {
+                    Console.WriteLine("Usted no esta autorizado para ingresar a esta area");
+                }
             }
             
         }
-        static void guardar(string nombre, string contrasena)
+        static void guardar(string nombre, string contrasena,string cargo)
         {
             escribir = File.AppendText(ruta);
-            escribir.WriteLine(nombre + " " + contrasena );
+            escribir.WriteLine(nombre + " " + contrasena+" "+ cargo );
             escribir.Close();
         }
         static string llenar(string dato)
