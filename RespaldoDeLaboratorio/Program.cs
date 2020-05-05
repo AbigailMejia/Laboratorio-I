@@ -30,6 +30,9 @@ namespace RespaldoDeLaboratorio
                 {
 
                 }
+
+                Console.WriteLine("Desea salir [s/n]");
+                op = char.Parse(Console.ReadLine());
             }
         }
     }

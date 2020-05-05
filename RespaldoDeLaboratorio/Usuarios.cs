@@ -8,7 +8,6 @@ namespace LaboratorioSistema
 {
     class Usuarios
     {
-        Usuarios us = new Usuarios();
         Inventarios inv = new Inventarios();
         Factura fac = new Factura();
         static string ruta = "Usuarios.txt";
