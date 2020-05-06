@@ -13,40 +13,50 @@ namespace LaboratorioSistema
         static string ruta = "Usuarios.txt";
         static StreamReader leer;
         static StreamWriter escribir;
+        
         public void Principal()
         {
 
-            Console.WriteLine("es administrador o trabajador [a/t]");
+            Console.WriteLine("Es administrador o trabajador [a/t]");
             char user = char.Parse(Console.ReadLine());
             if(user=='a')
             {
+
                 Console.WriteLine("Ingrese la contrasena");
                 int contra = int.Parse(Console.ReadLine());
                 if(contra==123)
                 {
-                    Console.WriteLine("Que desea hacer?\n1.Crear usuario\n2.Mostrar Inventario\n3.Mostrar Usuarios\n4. Mostrar Facturas");
+                    Console.WriteLine("Que desea hacer?\n1.Crear usuario\n2.Mostrar Inventario\n3.Mostrar Usuarios\n4.Mostrar Facturas");
                     int admin = int.Parse(Console.ReadLine());
                     if(admin==1)
                     {
-                            guardar(llenar("nombre"), llenar("contrasena"),llenar("cargo"));
+                            crear(llenar("nombre"), llenar("contrasena"),llenar("cargo"));
                        
                     }
                     if(admin==2)
                     {
-
+                        inv.mostrarinv();
+                        Console.WriteLine("-------------------------------------------------------");
+                        Console.WriteLine("");
                     }
                     if (admin == 3)
                     {
-                        Console.WriteLine(buscar(llenar("ingrese nombre a buscar")));
+                        Console.WriteLine(mostrarUsuario(llenar("ingrese ENTER")));
+                        Console.WriteLine("-------------------------------------------------------");
+                        Console.WriteLine("");
+
                     }
                     if (admin == 4)
                     {
-
+                        fac.mostrarfac();
+                        Console.WriteLine("-------------------------------------------------------");
+                        Console.WriteLine("");
                     }
                 }
                 else 
                 {
-                    Console.WriteLine("Usted no esta autorizado para ingresar a esta area");
+                    Console.WriteLine("");
+                    Console.WriteLine("Usted no esta autorizado para ingresar a esta area!!");
                 }
             }
             else if(user=='t')
@@ -63,7 +73,10 @@ namespace LaboratorioSistema
                     }
                     else if (admin == 2)
                     {
-
+                        Console.WriteLine("-------------------------------------------------------");
+                        Console.WriteLine("");
+                        inv.mostrarinv();
+                        fac.facturacion();
                     }
 
                 }
@@ -74,7 +87,8 @@ namespace LaboratorioSistema
             }
             
         }
-        static void guardar(string nombre, string contrasena,string cargo)
+                
+        static void crear(string nombre, string contrasena,string cargo)
         {
             escribir = File.AppendText(ruta);
             escribir.WriteLine(nombre + " " + contrasena+" "+ cargo );
@@ -85,12 +99,13 @@ namespace LaboratorioSistema
             Console.WriteLine("ingrese " + dato + ":");
             return (Console.ReadLine());
         }
-        static string buscar(string nombre)
+        static string mostrarUsuario(string nombre)
         {
-            string linea = "Contacto no encontrado";
+            string linea = "Usuario no encontrado";
             leer = File.OpenText(ruta);
             linea = leer.ReadToEnd();
             return linea;
         }
+
     }
 }
